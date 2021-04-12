@@ -235,7 +235,6 @@
                 document.getElementById("btnPula").disabled = true;
                 return;
             }
-            document.getElementById("mostrarAResposta").style.display = "none";
             i = Math.floor(Math.random() * max);
             sorteados.push(i);
             z++;
@@ -243,6 +242,7 @@
                 i = Math.floor(Math.random() * max);
             }
             dica.innerHTML = dicas[i];
+            document.getElementById("mostrarAResposta").style.display = "none";
             mostrarAResposta.innerHTML = "Resposta: " + dados[i];
             //Após pular a dica o contador decrementa
             contadorPula--;
