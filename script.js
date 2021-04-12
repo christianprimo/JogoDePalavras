@@ -24,7 +24,7 @@
                     document.getElementById("btnClass").style.display = "block";
                     dica.innerHTML = "O jogo acabou!";
                     acabou.innerHTML = "Sua pontuação foi: " + pontos;
-                    somGameOver();
+                    som("somOver");
                     // É adicionado ao vetor a última pontuação do jogador e o intervalo acaba
                     classificacaoP.push(pontos);
                     clearInterval(intervalo);
@@ -128,12 +128,12 @@
             var veja = document.getElementById("input").value;
             // Se for, o valor do input é zerado, aparece a mensagem, um novo número é soteado e aparece uma nova dica na tela
             if (veja.toUpperCase() == dados[i].toUpperCase()) {
-                somRespostaCerta();
+                som("somCerto");
                 input.value = "";
-                mudaCorNavV();
+                mudaCorNav("navbar navbar-light bg-success");
                 document.getElementById("resp").style.color = "forestGreen";
                 resp.innerHTML = "Acertou";
-                desapareceResp();
+                desaparece("resp");
                 i = Math.floor(Math.random() * max);
                 sorteados.push(i);
                 z++;
@@ -148,57 +148,36 @@
                 tempo += 5;
                 document.getElementById("temp").style.color = "forestGreen";
                 temp.innerHTML = " +5 seg";
-                desapareceTemp();
+                desaparece("temp");
                 pontos += 100;
                 totPonto.innerHTML = "Pontuação: " + pontos;
                 document.getElementById("ponto").style.color = "forestGreen";
                 ponto.innerHTML = " +100 pts";
-                desaparecePonto();
+                desaparece("ponto");
             } else {
                 // Mas se não acertar, aparece a mensagem, e o tempo diminui
-                somRespostaErrada();
+                som("somErrado");
                 input.value = "";
-                mudaCorNavP();
+                mudaCorNav("navbar navbar-light bg-danger");
                 document.getElementById("resp").style.color = "red";
                 resp.innerHTML = "Errou";
-                desapareceResp();
+                desaparece("resp");
                 tempo -= 5;
                 document.getElementById("temp").style.color = "red";
                 temp.innerHTML = " -5 seg";
-                desapareceTemp();
+                desaparece("temp");
             }
         }
-        // As funções abaixo aparecem uma mensagem temporária quando acionadas pela função ve
-        function desapareceResp() {
-            document.getElementById("resp").style.display = "block";
+        // Na função abaixo aparece uma mensagem temporária quando acionada pela função ve
+        function desaparece(mensagem) {
+            document.getElementById(mensagem).style.display = "block";
             setTimeout(function () {
-                document.getElementById("resp").style.display = "none";
+                document.getElementById(mensagem).style.display = "none";
             }, 1000);
-        }
-
-        function desapareceTemp() {
-            document.getElementById("temp").style.display = "block";
-            setTimeout(function () {
-                document.getElementById("temp").style.display = "none";
-            }, 1000);
-        }
-
-        function desaparecePonto() {
-            document.getElementById("ponto").style.display = "block";
-            setTimeout(function () {
-                document.getElementById("ponto").style.display = "none";
-            }, 1000);
-        }
-        //Funções que mudam a classe da tag nav para mudar a cor
-        function mudaCorNavV() {
-            document.getElementById("mudaNav").className = "navbar navbar-light bg-success";
-            setTimeout(function () {
-                document.getElementById("mudaNav").className = "navbar navbar-dark bg-primary";
-            }, 1000);
-        }
-
-        function mudaCorNavP() {
-            document.getElementById("mudaNav").className = "navbar navbar-light bg-danger";
+        
+        //Função que muda a classe da tag nav para mudar a cor
+        function mudaCorNav(cor) {
+            document.getElementById("mudaNav").className = cor;
             setTimeout(function () {
                 document.getElementById("mudaNav").className = "navbar navbar-dark bg-primary";
             }, 1000);
@@ -341,23 +320,8 @@
             playAudio.play();
         }
 
-        function somGameIntro() {
-            var playAudio = document.getElementById("somIntro");
-            playAudio.play();
-        }
-
-        function somRespostaCerta() {
-            var playAudio = document.getElementById("somCerto");
-            playAudio.play();
-        }
-
-        function somRespostaErrada() {
-            var playAudio = document.getElementById("somErrado");
-            playAudio.play();
-        }
-
-        function somGameOver() {
-            var playAudio = document.getElementById("somOver");
+        function som(audio) {
+            var playAudio = document.getElementById(audio);
             playAudio.play();
         }
         // Quando acionado é exibido novas páginas no mesmo arquivo
