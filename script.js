@@ -195,7 +195,7 @@
             var intervalo = setInterval(function () {
                 var inpu = document.getElementById("input").value;
                 var tam = dados[i].length;
-                if (inpu.length == tam) {
+                if (inpu.length >= tam) {
                     ve();
                     clearInterval(intervalo);
                 }
