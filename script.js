@@ -1,4 +1,4 @@
-        // Inicializando os vetores que irão conter a pontuação e o nome dos jogagores
+                // Inicializando os vetores que irão conter a pontuação e o nome dos jogagores
         let classificacaoP = [];
         let classificacaoN = [];
         // Iniciando o timer
@@ -174,7 +174,7 @@
             setTimeout(function () {
                 document.getElementById(mensagem).style.display = "none";
             }, 1000);
-        
+        }
         //Função que muda a classe da tag nav para mudar a cor
         function mudaCorNav(cor) {
             document.getElementById("mudaNav").className = cor;
@@ -195,7 +195,7 @@
             var intervalo = setInterval(function () {
                 var inpu = document.getElementById("input").value;
                 var tam = dados[i].length;
-                if (inpu.length == tam) {
+                if (inpu.length >= tam) {
                     ve();
                     clearInterval(intervalo);
                 }
@@ -235,7 +235,6 @@
                 document.getElementById("btnPula").disabled = true;
                 return;
             }
-            document.getElementById("mostrarAResposta").style.display = "none";
             i = Math.floor(Math.random() * max);
             sorteados.push(i);
             z++;
@@ -243,6 +242,8 @@
                 i = Math.floor(Math.random() * max);
             }
             dica.innerHTML = dicas[i];
+            document.getElementById("mostrarAResposta").style.display = "none";
+            mostrarAResposta.innerHTML = "Resposta: " + dados[i];
             //Após pular a dica o contador decrementa
             contadorPula--;
             pulaDisp.innerHTML = "Disponível: " + contadorPula;
@@ -315,20 +316,20 @@
             }
         }
         //Funções que iniciam o áudio quando chamados
-        function somClick() {
-            var playAudio = document.getElementById("somClique");
+        function som(audio) {
+            var playAudio = document.getElementById(audio);
             playAudio.play();
         }
 
-        function som(audio) {
-            var playAudio = document.getElementById(audio);
+        function somDoClique() {
+            var playAudio = document.getElementById("somClique");
             playAudio.play();
         }
         // Quando acionado é exibido novas páginas no mesmo arquivo
         function novo() {
             document.open();
             document.write(
-                "<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css' rel='stylesheet'integrity='sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6' crossorigin='anonymous'><body onclick='somClick()'><nav id='mudaNav' class='navbar navbar-dark bg-primary'><div class='container-fluid'><span class='navbar-brand mb-0 h1'>Jogo de palavras</span></div></nav><div class='d-flex flex-row justify-content-center align-items-center'><span id='timer'></span><span id='temp'></span></div><div class='d-flex flex-row'><span id='totPonto'></span><span id='ponto'></span></div><h2 class='text-center text-secondary' id='dica'></h2><div class='d-flex flex-row justify-content-center align-items-center'><input type='text' id='input'><h1 id='acabou'></h1><p id='resp'></p></div><p class='text-center' id='tama'></p><div class='d-flex flex-row justify-content-center align-items-center'><input type='button' class='btn btn-secondary btn-sm' id='btnClass' onclick='classific(); gerarN(); gerarP()' style='display: none;' value='Ver Classificação'></div><div class='d-flex flex-column justify-content-start align-items-start'style='position: absolute;'><span id='mostracontadorResp'>Disponível: 0</span><input type='button' id='mostraResp' class='btn btn-outline-dark' onclick='mostraResposta()' value='Mostrar resposta'></div><div class='d-flex flex-column justify-content-start align-items-end'><span id='pulaDisp' style='margin-right: 30px;'>Disponível: 0</span><button id='btnPula' class='btn btn-outline-dark' onclick='pulaPergunta()'>Pular pergunta</button></div><h6 id='mostrarAResposta' class='text-center' style='display:none;'></h6><audio style='visibility: hidden;' id='somIntro' autoplay><source src='gameIntro.wav' type='audio/wav'></audio><audio style='visibility: hidden;' id='somClique'><source src='clique.wav' type='audio/wav'></audio><audio style='visibility: hidden;' id='somCerto'><source src='respostaCerta.wav' type='audio/wav'></audio><audio style='visibility: hidden;' id='somErrado'><source src='respostaErrada.wav' type='audio/wav'></audio><audio style='visibility: hidden;' id='somOver'><source src='gameOver.wav' type='audio/wav'></audio></body>"
+                "<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css' rel='stylesheet'integrity='sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6' crossorigin='anonymous'><body onclick='somDoClique()'><nav id='mudaNav' class='navbar navbar-dark bg-primary'><div class='container-fluid'><span class='navbar-brand mb-0 h1'>Jogo de palavras</span></div></nav><div class='d-flex flex-row justify-content-center align-items-center'><span id='timer'></span><span id='temp'></span></div><div class='d-flex flex-row'><span id='totPonto'></span><span id='ponto'></span></div><h2 class='text-center text-secondary' id='dica'></h2><div class='d-flex flex-row justify-content-center align-items-center'><input type='text' id='input'><h1 id='acabou'></h1><p id='resp'></p></div><p class='text-center' id='tama'></p><div class='d-flex flex-row justify-content-center align-items-center'><input type='button' class='btn btn-secondary btn-sm' id='btnClass' onclick='classific(); gerarN(); gerarP()' style='display: none;' value='Ver Classificação'></div><div class='d-flex flex-column justify-content-start align-items-start'style='position: absolute;'><span id='mostracontadorResp'>Disponível: 0</span><input type='button' id='mostraResp' class='btn btn-outline-dark' onclick='mostraResposta()' value='Mostrar resposta'></div><div class='d-flex flex-column justify-content-start align-items-end'><span id='pulaDisp' style='margin-right: 30px;'>Disponível: 0</span><button id='btnPula' class='btn btn-outline-dark' onclick='pulaPergunta()'>Pular pergunta</button></div><h6 id='mostrarAResposta' class='text-center' style='display:none;'></h6><audio style='visibility: hidden;' id='somIntro' autoplay><source src='gameIntro.wav' type='audio/wav'></audio><audio style='visibility: hidden;' id='somClique'><source src='clique.wav' type='audio/wav'></audio><audio style='visibility: hidden;' id='somCerto'><source src='respostaCerta.wav' type='audio/wav'></audio><audio style='visibility: hidden;' id='somErrado'><source src='respostaErrada.wav' type='audio/wav'></audio><audio style='visibility: hidden;' id='somOver'><source src='gameOver.wav' type='audio/wav'></audio></body>"
             );
             document.close();
         }
@@ -336,7 +337,7 @@
         function classific() {
             document.open();
             document.write(
-                "<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css' rel='stylesheet'integrity='sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6' crossorigin='anonymous'><body onclick='somClick()'><nav class='navbar navbar-dark bg-primary'><div class='container-fluid'><span class='navbar-brand mb-0 h1'>Jogo de palavras</span></div></nav><ul class='list-group list-group-horizontal justify-content-center align-items-center' style='margin-top: 50px;'><ol class='list-group-item list-group-item-dark' id=lista1></ol><ul class='list-group-item list-group-item-secondary' id=lista2></ul></ul><div class='btn-group' style='margin-left: 40%; margin-top: 25px;'><input type='button' id='recomeca' class='btn btn-primary btn-sm' onclick='reset(); temporizador(); novo(); jogar(); repeteNome(); mostraRespCount(); pulaPergCount()' value='Recomeçar'><input type='button' class='btn btn-info btn-sm' id='btnMudaJog' onclick='mostraTrocaNome();' value='Mudar jogador'></div><div class='d-flex flex-row justify-content-center align-items-center' style='margin-top: 10px;'><input type='text' id='mostraMudaNome' placeholder='Digite o novo jogador' style='display: none;'><input type='button' class='btn btn-success btn-sm' id='btnOk' onclick='pegaMudaNome(); reset(); temporizador(); novo(); jogar(); mostraRespCount(); pulaPergCount()' value='Ok' style='display: none;'></div><audio style='visibility: hidden;' id='somClique'><source src='clique.wav' type='audio/wav'></audio></body>"
+                "<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css' rel='stylesheet'integrity='sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6' crossorigin='anonymous'><body onclick='somDoClique()'><nav class='navbar navbar-dark bg-primary'><div class='container-fluid'><span class='navbar-brand mb-0 h1'>Jogo de palavras</span></div></nav><ul class='list-group list-group-horizontal justify-content-center align-items-center' style='margin-top: 50px;'><ol class='list-group-item list-group-item-dark' id=lista1></ol><ul class='list-group-item list-group-item-secondary' id=lista2></ul></ul><div class='btn-group' style='margin-left: 40%; margin-top: 25px;'><input type='button' id='recomeca' class='btn btn-primary btn-sm' onclick='reset(); temporizador(); novo(); jogar(); repeteNome(); mostraRespCount(); pulaPergCount()' value='Recomeçar'><input type='button' class='btn btn-info btn-sm' id='btnMudaJog' onclick='mostraTrocaNome();' value='Mudar jogador'></div><div class='d-flex flex-row justify-content-center align-items-center' style='margin-top: 10px;'><input type='text' id='mostraMudaNome' placeholder='Digite o novo jogador' style='display: none;'><input type='button' class='btn btn-success btn-sm' id='btnOk' onclick='pegaMudaNome(); reset(); temporizador(); novo(); jogar(); mostraRespCount(); pulaPergCount()' value='Ok' style='display: none;'></div><audio style='visibility: hidden;' id='somClique'><source src='clique.wav' type='audio/wav'></audio></body>"
             );
             document.close();
         }
